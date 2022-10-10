@@ -4,18 +4,20 @@ public class HealthcareProfessionalNode {
 	// Atributos
     private HealthcareProfessional info;
     private HealthcareProfessionalNode next;
-// Método construtor      
+// Mï¿½todo construtor      
     public HealthcareProfessionalNode(HealthcareProfessional value) {
         this.info = value;
     }
-// Métodos SET
+// Mï¿½todos SET
     public void setInfo(HealthcareProfessional value) {
         this.info = value;
     }
     public void setNext(HealthcareProfessionalNode newNext) {
         this.next = newNext;
     }
-// Métodos GET
+
+    
+// Mï¿½todos GET
     public HealthcareProfessional getInfo() {
         return this.info;
     }
