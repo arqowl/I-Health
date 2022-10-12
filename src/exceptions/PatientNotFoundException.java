@@ -4,7 +4,7 @@ public class PatientNotFoundException extends Exception{
 	private String cpf;
 
 	public PatientNotFoundException(String cpf) {
-		super("Paciente não encontrado por conta do CPF "+cpf+" não existir");
+		super("Paciente nao encontrado por conta do CPF "+cpf+" nao existir");
 		this.cpf = cpf;
 	}
 	

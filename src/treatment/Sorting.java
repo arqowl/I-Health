@@ -4,14 +4,22 @@ import exceptions.*;
 import person.*;
 
 public class Sorting {
+	private ManagePatients patients;
+	private ManageHealthcareProfessional professionals;
+	private ManageTreatment treatments;
 	
-    public void searchPatient(ManagePatients managePatients, Patient patient) throws Exception{
+    public Sorting(ManagePatients patients, ManageHealthcareProfessional professionals, ManageTreatment treatments) {
+		this.patients = patients;
+		this.professionals = professionals;
+		this.treatments = treatments;
+	}
+
+	public void searchPatient(Patient patient) throws Exception{
     	PatientNode aux;
-    	aux = managePatients.getFirst();
+    	aux = this.patients.getFirst();
     	boolean validatePatient=false;
-    	while(aux != null) {
+    	while(aux != null&&validatePatient==false) {
     		if(aux.getInfo().compareTo(patient) == 0) {
-    			System.out.println("Paciente encontrado");
     			validatePatient=true;
     		} else {
     			aux = aux.getNext();
@@ -22,13 +30,12 @@ public class Sorting {
          }
     }
     
-    public void searchHealthcareProfessional(ManageHealthcareProfessional manageHealthcareProfessional, HealthcareProfessional healthcareProfessional) throws Exception{
+    public void searchHealthcareProfessional(HealthcareProfessional healthcareProfessional) throws Exception{
     	HealthcareProfessionalNode aux;
-    	aux = manageHealthcareProfessional.getFirst();
+    	aux = this.professionals.getFirst();
     	boolean validateHealthcareProfessional=false;
-    	while(aux != null) {
+    	while(aux != null&&validateHealthcareProfessional==false) {
     		if(aux.getInfo().compareTo(healthcareProfessional) == 0) {
-    			System.out.println("Profissional de Saúde encontrado");
     			validateHealthcareProfessional=true;
     		} else {
     			aux = aux.getNext();
@@ -38,7 +45,27 @@ public class Sorting {
        	 throw new HealthcareProfessionalNotFoundException();
         }
    }
-	
+
+   public ManageTreatment addValidTreatment(Patient pat,HealthcareProfessional hp,String treatmentID) throws Exception{
+		Treatment treat = new Treatment(this.patients.search(pat).getInfo(), this.professionals.search(hp).getInfo(), treatmentID);
+		this.treatments.insertTreatment(treat);
+		return this.treatments;
+   }
+
+	public ManagePatients getPatients() {
+		return this.patients;
+	}
+	public ManageHealthcareProfessional getProfessionals() {
+		return this.professionals;
+	}
+
+	@Override
+	public String toString() {
+		return "Sorting [patients=" + patients + ", professionals=" + professionals + ", treatments=" + treatments
+				+ "]";
+	}
+
+   
 	
 	
 

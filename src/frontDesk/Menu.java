@@ -37,18 +37,18 @@ public static void main(String[] args) throws Exception {
             	cpf = in.next(); in.nextLine();
             	System.out.println("Informe o nome do paciente: ");
             	name = in.next(); in.nextLine();
-            	System.out.println("O paciente possui plano de saúde? S/N");
+            	System.out.println("O paciente possui plano de saï¿½de? S/N");
             	checkHealthPlan = in.next().charAt(0); in.nextLine();
             	if(Character.toLowerCase(checkHealthPlan) == 's') {
-            		System.out.println("Informe o Plano de saúde do paciente: ");
+            		System.out.println("Informe o Plano de saï¿½de do paciente: ");
             		healthPlan = in.next(); in.nextLine();
             		pat = new PatientWithInsurance(cpf, name,healthPlan);
             	}  else {
-            		System.out.println("Informe o número do Cartão de crédito do paciente: ");
+            		System.out.println("Informe o nï¿½mero do Cartï¿½o de crï¿½dito do paciente: ");
             		cardNumber = in.next(); in.nextLine();
-            		System.out.println("Informe a data de expiração do cartão de crédito do paciente: ");
+            		System.out.println("Informe a data de expiraï¿½ï¿½o do cartï¿½o de crï¿½dito do paciente: ");
             		expirationDate = in.next(); in.nextLine();
-            		System.out.println("Informe o código CVC do cartão do paciente: ");
+            		System.out.println("Informe o cï¿½digo CVC do cartï¿½o do paciente: ");
             		cvcCode = in.next(); in.nextLine();
             		creditCard = new CreditCard(cardNumber, expirationDate, cvcCode);
             		pat = new PatientWithoutInsurance(cpf, name, creditCard);
@@ -59,9 +59,9 @@ public static void main(String[] args) throws Exception {
             	patients.showAll();
                 break;
             case 3:
-            	System.out.println("Informe o certificado do Profissional de saúde: ");
+            	System.out.println("Informe o certificado do Profissional de saï¿½de: ");
             	certificate = in.next(); in.nextLine();
-            	System.out.println("Informe a especialidade do Profissional de saúde: ");
+            	System.out.println("Informe a especialidade do Profissional de saï¿½de: ");
             	showSpecialization();
                 key= in.nextInt(); in.nextLine();
             	switch (key) {
@@ -82,7 +82,7 @@ public static void main(String[] args) throws Exception {
 						specialization = Specialization.Intern;
 						break;
 				}
-            	System.out.println("Informe o nome do Profissional de saúde: ");
+            	System.out.println("Informe o nome do Profissional de saï¿½de: ");
             	name = in.next(); in.nextLine();
             	hp = new HealthcareProfessional(certificate, specialization, name);
             	professionals.insertHealthcareProfessional(hp);
@@ -94,48 +94,41 @@ public static void main(String[] args) throws Exception {
             	System.out.println("Informe o CPF do paciente: ");
             	cpf = in.next(); in.nextLine();
             	pat = new Patient(cpf);
-            	System.out.println("Informe o certificado do Profissional de saúde: ");
+            	System.out.println("Informe o certificado do Profissional de saï¿½de: ");
             	certificate = in.next(); in.nextLine();
             	hp = new HealthcareProfessional(certificate);
             	try {
-            		triagem.searchHealthcareProfessional(professionals, hp);
-            		triagem.searchPatient(patients, pat);
-					
+					triagem = new Sorting(patients, professionals, atendimentos);
+            		triagem.searchHealthcareProfessional(hp);
+            		triagem.searchPatient(pat);
 				} catch (PatientNotFoundException e) {
+					System.out.println("Paciente nao encontrado");
 					showMenu();
 					break;
 				} catch (HealthcareProfessionalNotFoundException e) {
+					System.out.println("Profissional de saude nao encontrado");
 					showMenu();
 					break;
-				} catch (NullPointerException e) {
-					showMenu();
 				}
-            	System.out.println("Informe o treatmentID do atendimento que está sendo criado: ");
+            	System.out.println("Informe o treatmentID do atendimento que estï¿½ sendo criado: ");
             	treatmentID = in.next(); in.nextLine();
-            	try {
-                	atend = new Treatment(patients.search(pat).getInfo(), professionals.search(hp).getInfo(), treatmentID);
-            	} catch(NullPointerException e) {
-            		showMenu();
-            		break;
-            	}
-
-            	atendimentos.insertTreatment(atend);
+            	atendimentos = triagem.addValidTreatment(pat, hp, treatmentID);
                 break;
             case 6:
             	atendimentos.showAll();
                 break;
             case 7:
-            	System.out.println("Informe o CPF do paciente que você deseja remover: ");
+            	System.out.println("Informe o CPF do paciente que vocï¿½ deseja remover: ");
             	cpf = in.next(); in.nextLine();
             	patients.remove(cpf);
                 break;
             case 8:
-            	System.out.println("Informe o certificado do Profissional de saúde que você deseja remover: ");
+            	System.out.println("Informe o certificado do Profissional de saï¿½de que vocï¿½ deseja remover: ");
             	certificate = in.next(); in.nextLine();
             	professionals.remove(certificate);
             	break;
             case 9:
-            	System.out.println("Informe o treatmentID do atendimento que está sendo removido: ");
+            	System.out.println("Informe o treatmentID do atendimento que estï¿½ sendo removido: ");
             	treatmentID = in.next(); in.nextLine();
             	atendimentos.remove(treatmentID);
             	break;
@@ -152,22 +145,22 @@ public static void main(String[] args) throws Exception {
     }      
       
         public static void showMenu(){
-	        System.out.println(	"1 - Cadastrar um novo paciente \n" +
+	        System.out.println(	"\n1 - Cadastrar um novo paciente \n" +
 				                "2 - Mostrar todos os pacientes \n" +
-				                "3 - Cadastrar um novo profissional de saúde \n" +
-				                "4 - Mostrar todos os profissionais de saúde \n" +
+				                "3 - Cadastrar um novo profissional de saï¿½de \n" +
+				                "4 - Mostrar todos os profissionais de saï¿½de \n" +
 				                "5 - Cadastrar um novo atendimento \n" +
 				                "6 - Mostrar todos os atendimentos pendentes \n" +
 				                "7 - Remover um paciente \n" +
-				                "8 - Remover um Profissional de Saúde \n" +
-				                "8 - Remover um atendimento \n" +
+				                "8 - Remover um Profissional de Saï¿½de \n" +
+				                "9 - Remover um atendimento \n" +
 				                "0 - Sair do programa");
 	        System.out.print("choice: ");
         }
         
         public static void showSpecialization() {
         	System.out.println("1 - Fisioterapeuta");
-        	System.out.println("2 - Médico");
+        	System.out.println("2 - Mï¿½dico");
         	System.out.println("3 - Enfermeira");
         	System.out.println("4 - Nutricionista");
         	System.out.println("");
