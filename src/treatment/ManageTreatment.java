@@ -1,13 +1,15 @@
 package treatment;
 
-public class ManageTreatment {
+import person.Manage;
+
+public class ManageTreatment implements Manage{
 	// Atributo
 
     private TreatmentNode first;
 
-// Métodos públicos
+// Mï¿½todos pï¿½blicos
     public boolean isEmpty() {
-        // Testa se a lista está vazia
+        // Testa se a lista estï¿½ vazia
         if (this.first == null) {
             return true;
         } else {
@@ -17,32 +19,32 @@ public class ManageTreatment {
 
     public void insertTreatment(Treatment treatment) {
         TreatmentNode newNode;
-        // Verifica, usando a função "search" se o Treatment já é cadastrado
+        // Verifica, usando a funï¿½ï¿½o "search" se o Treatment jï¿½ ï¿½ cadastrado
         TreatmentNode result = this.search(treatment);
         if (result != null) {
-            System.out.println("Treatment já existe na lista!");
+            System.out.println("Treatment jï¿½ existe na lista!");
         } else {
-            // Cria e preenche um newNode nó com o Treatment que foi passado como parâmetro
+            // Cria e preenche um newNode nï¿½ com o Treatment que foi passado como parï¿½metro
             newNode = new TreatmentNode(treatment);
-            // Insere um newNode Treatment no início da lista de Treatments
+            // Insere um newNode Treatment no inï¿½cio da lista de Treatments
             if (this.isEmpty() == true) {
                 this.first = newNode;
             } else {
                 newNode.setNext(this.first);
                 this.first = newNode;
             }
-            System.out.println("Inserção efetuada!");
+            System.out.println("Inserï¿½ï¿½o efetuada!");
         }
     }
 
     public void insertTreatmentEnd(Treatment treatment) {
         TreatmentNode newNode, aux;
-        // Verifica, usando a função "search" se o Treatment já é cadastrado
+        // Verifica, usando a funï¿½ï¿½o "search" se o Treatment jï¿½ ï¿½ cadastrado
         TreatmentNode result = this.search(treatment);
         if (result != null) {
-            System.out.println("Treatment já existe na lista!");
+            System.out.println("Treatment jï¿½ existe na lista!");
         } else {
-            // Cria e preenche um newNode nó com o Treatment que foi passado como parâmetro
+            // Cria e preenche um newNode nï¿½ com o Treatment que foi passado como parï¿½metro
             newNode = new TreatmentNode(treatment);
             // Insere um newNode Treatment no End da lista de Treatments
             if (this.isEmpty() == true) {
@@ -54,7 +56,7 @@ public class ManageTreatment {
                 }
                 aux.setNext(newNode);
             }
-            System.out.println("Inserção efetuada!");
+            System.out.println("Inserï¿½ï¿½o efetuada!");
         }
     }
 
@@ -83,14 +85,14 @@ public class ManageTreatment {
         } else if (this.first.getNext() == null) {
             if (wanted.compareTo(this.first.getInfo()) == 0) {
                 this.first = null;
-                System.out.println("Remoção efetuada");
+                System.out.println("Remoï¿½ï¿½o efetuada");
             } else {
-                System.out.println("Treatment não encontrado!");
+                System.out.println("Treatment nï¿½o encontrado!");
             }
-        } else { // lista com mais de um nó
-            if (wanted.compareTo(this.first.getInfo()) == 0) { // remoção do first
+        } else { // lista com mais de um nï¿½
+            if (wanted.compareTo(this.first.getInfo()) == 0) { // remoï¿½ï¿½o do first
                 this.first = this.first.getNext();
-                System.out.println("Remoção efetuada");
+                System.out.println("Remoï¿½ï¿½o efetuada");
             } else {
                 anterior = null;
                 atual = this.first;
@@ -104,18 +106,18 @@ public class ManageTreatment {
                    }
                 }
                 if (atual == null) {
-                    System.out.println("Valor não pertence a lista!");
+                    System.out.println("Valor nï¿½o pertence a lista!");
                 }
                 else {
                     anterior.setNext(atual.getNext());
-                    System.out.println("Remoção efetuada!");
+                    System.out.println("Remoï¿½ï¿½o efetuada!");
                 }
             }
         }
      }
 
     public void showAll() {
-        // Exibe o conteúdo de todos os nós da lista
+        // Exibe o conteï¿½do de todos os nï¿½s da lista
         TreatmentNode aux;
         if (this.isEmpty() == true) {
             System.out.println("Lista vazia!");

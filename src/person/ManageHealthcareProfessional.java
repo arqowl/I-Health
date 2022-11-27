@@ -1,13 +1,13 @@
 package person;
 
-public class ManageHealthcareProfessional {
+public class ManageHealthcareProfessional implements Manage{
 	// Atributo
 
     private HealthcareProfessionalNode first;
 
-// Métodos públicos
+// Mï¿½todos pï¿½blicos
     public boolean isEmpty() {
-        // Testa se a lista está vazia
+        // Testa se a lista estï¿½ vazia
         if (this.first == null) {
             return true;
         } else {
@@ -17,32 +17,32 @@ public class ManageHealthcareProfessional {
 
     public void insertHealthcareProfessional(HealthcareProfessional healthcareProfessional) {
         HealthcareProfessionalNode newNode;
-        // Verifica, usando a função "search" se o HealthcareProfessional já é cadastrado
+        // Verifica, usando a funï¿½ï¿½o "search" se o HealthcareProfessional jï¿½ ï¿½ cadastrado
         HealthcareProfessionalNode result = this.search(healthcareProfessional);
         if (result != null) {
-            System.out.println("HealthcareProfessional já existe na lista!");
+            System.out.println("HealthcareProfessional jï¿½ existe na lista!");
         } else {
-            // Cria e preenche um newNode nó com o HealthcareProfessional que foi passado como parâmetro
+            // Cria e preenche um newNode nï¿½ com o HealthcareProfessional que foi passado como parï¿½metro
             newNode = new HealthcareProfessionalNode(healthcareProfessional);
-            // Insere um newNode HealthcareProfessional no início da lista de HealthcareProfessionals
+            // Insere um newNode HealthcareProfessional no inï¿½cio da lista de HealthcareProfessionals
             if (this.isEmpty() == true) {
                 this.first = newNode;
             } else {
                 newNode.setNext(this.first);
                 this.first = newNode;
             }
-            System.out.println("Inserção efetuada!");
+            System.out.println("Inserï¿½ï¿½o efetuada!");
         }
     }
 
     public void insertHealthcareProfessionalEnd(HealthcareProfessional healthcareProfessional) {
         HealthcareProfessionalNode newNode, aux;
-        // Verifica, usando a função "search" se o HealthcareProfessional já é cadastrado
+        // Verifica, usando a funï¿½ï¿½o "search" se o HealthcareProfessional jï¿½ ï¿½ cadastrado
         HealthcareProfessionalNode result = this.search(healthcareProfessional);
         if (result != null) {
-            System.out.println("HealthcareProfessional já existe na lista!");
+            System.out.println("HealthcareProfessional jï¿½ existe na lista!");
         } else {
-            // Cria e preenche um newNode nó com o HealthcareProfessional que foi passado como parâmetro
+            // Cria e preenche um newNode nï¿½ com o HealthcareProfessional que foi passado como parï¿½metro
             newNode = new HealthcareProfessionalNode(healthcareProfessional);
             // Insere um newNode HealthcareProfessional no End da lista de HealthcareProfessionals
             if (this.isEmpty() == true) {
@@ -54,7 +54,7 @@ public class ManageHealthcareProfessional {
                 }
                 aux.setNext(newNode);
             }
-            System.out.println("Inserção efetuada!");
+            System.out.println("Inserï¿½ï¿½o efetuada!");
         }
     }
 
@@ -93,15 +93,15 @@ public class ManageHealthcareProfessional {
         } else if (this.first.getNext() == null) {
             if (wanted.compareTo(this.first.getInfo()) == 0) {
                 this.first = null;
-                System.out.println("Remoção efetuada");
+                System.out.println("Remoï¿½ï¿½o efetuada");
             } else {
             	
-                System.out.println("HealthcareProfessional não encontrado!");
+                System.out.println("HealthcareProfessional nï¿½o encontrado!");
             }
-        } else { // lista com mais de um nó
-            if (wanted.compareTo(this.first.getInfo()) == 0) { // remoção do first
+        } else { // lista com mais de um nï¿½
+            if (wanted.compareTo(this.first.getInfo()) == 0) { // remoï¿½ï¿½o do first
                 this.first = this.first.getNext();
-                System.out.println("Remoção efetuada");
+                System.out.println("Remoï¿½ï¿½o efetuada");
             } else {
                 anterior = null;
                 atual = this.first;
@@ -115,18 +115,18 @@ public class ManageHealthcareProfessional {
                    }
                 }
                 if (atual == null) {
-                    System.out.println("Valor não pertence a lista!");
+                    System.out.println("Valor nï¿½o pertence a lista!");
                 }
                 else {
                     anterior.setNext(atual.getNext());
-                    System.out.println("Remoção efetuada!");
+                    System.out.println("Remoï¿½ï¿½o efetuada!");
                 }
             }
         }
      }
 
     public void showAll() {
-        // Exibe o conteúdo de todos os nós da lista
+        // Exibe o conteï¿½do de todos os nï¿½s da lista
         HealthcareProfessionalNode aux;
         if (this.isEmpty() == true) {
             System.out.println("Lista vazia!");

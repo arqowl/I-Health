@@ -1,13 +1,13 @@
 package person;
 
-public class ManagePatients {
+public class ManagePatients implements Manage{
 	// Atributo
 
     private PatientNode first;
 
-// Métodos públicos
+// Mï¿½todos pï¿½blicos
     public boolean isEmpty() {
-        // Testa se a lista está vazia
+        // Testa se a lista estï¿½ vazia
         if (this.first == null) {
             return true;
         } else {
@@ -17,32 +17,32 @@ public class ManagePatients {
 
     public void insertPatient(Patient patient) {
         PatientNode newNode;
-        // Verifica, usando a função "search" se o Patient já é cadastrado
+        // Verifica, usando a funï¿½ï¿½o "search" se o Patient jï¿½ ï¿½ cadastrado
         PatientNode result = this.search(patient);
         if (result != null) {
-            System.out.println("Patient já existe na lista!");
+            System.out.println("Patient jï¿½ existe na lista!");
         } else {
-            // Cria e preenche um newNode nó com o Patient que foi passado como parâmetro
+            // Cria e preenche um newNode nï¿½ com o Patient que foi passado como parï¿½metro
             newNode = new PatientNode(patient);
-            // Insere um newNode Patient no início da lista de Patients
+            // Insere um newNode Patient no inï¿½cio da lista de Patients
             if (this.isEmpty() == true) {
                 this.first = newNode;
             } else {
                 newNode.setNext(this.first);
                 this.first = newNode;
             }
-            System.out.println("Inserção efetuada!");
+            System.out.println("Inserï¿½ï¿½o efetuada!");
         }
     }
 
     public void insertPatientEnd(Patient patient) {
         PatientNode newNode, aux;
-        // Verifica, usando a função "search" se o Patient já é cadastrado
+        // Verifica, usando a funï¿½ï¿½o "search" se o Patient jï¿½ ï¿½ cadastrado
         PatientNode result = this.search(patient);
         if (result != null) {
-            System.out.println("Patient já existe na lista!");
+            System.out.println("Patient jï¿½ existe na lista!");
         } else {
-            // Cria e preenche um newNode nó com o Patient que foi passado como parâmetro
+            // Cria e preenche um newNode nï¿½ com o Patient que foi passado como parï¿½metro
             newNode = new PatientNode(patient);
             // Insere um newNode Patient no End da lista de Patients
             if (this.isEmpty() == true) {
@@ -54,7 +54,7 @@ public class ManagePatients {
                 }
                 aux.setNext(newNode);
             }
-            System.out.println("Inserção efetuada!");
+            System.out.println("Inserï¿½ï¿½o efetuada!");
         }
     }
 
@@ -83,14 +83,14 @@ public class ManagePatients {
         } else if (this.first.getNext() == null) {
             if (wanted.compareTo(this.first.getInfo()) == 0) {
                 this.first = null;
-                System.out.println("Remoção efetuada");
+                System.out.println("Remoï¿½ï¿½o efetuada");
             } else {
-                System.out.println("Patient não encontrado!");
+                System.out.println("Patient nï¿½o encontrado!");
             }
-        } else { // lista com mais de um nó
-            if (wanted.compareTo(this.first.getInfo()) == 0) { // remoção do first
+        } else { // lista com mais de um nï¿½
+            if (wanted.compareTo(this.first.getInfo()) == 0) { // remoï¿½ï¿½o do first
                 this.first = this.first.getNext();
-                System.out.println("Remoção efetuada");
+                System.out.println("Remoï¿½ï¿½o efetuada");
             } else {
                 anterior = null;
                 atual = this.first;
@@ -104,11 +104,11 @@ public class ManagePatients {
                    }
                 }
                 if (atual == null) {
-                    System.out.println("Valor não pertence a lista!");
+                    System.out.println("Valor nï¿½o pertence a lista!");
                 }
                 else {
                     anterior.setNext(atual.getNext());
-                    System.out.println("Remoção efetuada!");
+                    System.out.println("Remoï¿½ï¿½o efetuada!");
                 }
             }
         }
@@ -125,7 +125,7 @@ public class ManagePatients {
 	}
 
 	public void showAll() {
-        // Exibe o conteúdo de todos os nós da lista
+        // Exibe o conteï¿½do de todos os nï¿½s da lista
         PatientNode aux;
         if (this.isEmpty() == true) {
             System.out.println("Lista vazia!");
