@@ -1,6 +1,6 @@
 public class testCreateNewPatient {
     
-    @tes
+    @test
     public void testCreateNewPatient() {
         ManagePatients patients = new ManagePatients();
         Patient pat = null;
